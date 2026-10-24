@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Simulador</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ENCABEZADO -->
+
+    <header>
+
+        <h1>Trading Simulador</h1>
+
+        <div class="user-area">
+
+            <span id="welcome"></span>
+
+            <button id="logoutButton">
+                Cerrar sesión
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- SALDO -->
+
+        <section class="balance">
+
+            <h2>Mi cuenta</h2>
+
+            <p class="balance-label">
+                Saldo disponible
+            </p>
+
+            <p id="balance">
+                $10,000.00
+            </p>
+
+            <p class="balance-label">
+                Valor de la cartera / Patrimonio total
+            </p>
+
+            <p id="equity">-</p>
+
+        </section>
+
+
+
+        <!-- MERCADO / CREAR OPERACIÓN -->
+
+        <section class="market">
+
+            <h2>Crear operación</h2>
+
+
+            <div class="asset-card">
+
+
+                <!-- ACTIVO -->
+
+                <label for="asset">
+                    Activo
+                </label>
+
+                <select id="asset"></select>
+
+                <p class="price" id="marketPrice">
+                    Cargando precio...
+                </p>
+
+
+
+                <!-- TIPO DE ORDEN (Decorator en el backend) -->
+
+                <label for="orderType">
+                    Tipo de orden
+                </label>
+
+                <select id="orderType">
+                    <option value="MARKET">Mercado (al precio actual)</option>
+                    <option value="LIMIT">Límite (solo si el precio llega a mi precio)</option>
+                    <option value="STOP_LOSS">Stop-loss (se activa al cruzar mi precio)</option>
+                </select>
+
+
+
+                <!-- CANTIDAD -->
+
+                <label for="quantity">
+                    Cantidad
+                </label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    placeholder="Ejemplo: 0.5"
+                    step="any"
+                    min="0"
+                >
+
+
+
+                <!-- PRECIO LÍMITE / STOP -->
+
+                <div id="priceBox" style="display:none">
+
+                    <label for="price" id="priceLabel">
+                        Precio límite
+                    </label>
+
+                    <input
+                        type="number"
+                        id="price"
+                        placeholder="Ejemplo: 60000"
+                        step="any"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <!-- STOP LOSS / TAKE PROFIT (opcionales, solo compras) -->
+
+                <label for="stopLoss">
+                    Stop Loss (opcional, compras)
+                </label>
+
+                <input
+                    type="number"
+                    id="stopLoss"
+                    placeholder="Ejemplo: 58000"
+                    step="any"
+                    min="0"
+                >
+
+                <label for="takeProfit">
+                    Take Profit (opcional, compras)
+                </label>
+
+                <input
+                    type="number"
+                    id="takeProfit"
+                    placeholder="Ejemplo: 65000"
+                    step="any"
+                    min="0"
+                >
+
+
+
+                <!-- BOTONES -->
+
+                <div class="trade-buttons">
+
+                    <button id="buyButton">
+                        Comprar
+                    </button>
+
+                    <button id="sellButton">
+                        Vender
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CARTERA (Composite en el backend) -->
+
+        <section class="portfolio">
+
+            <h2>Mi cartera</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Activo</th>
+
+                        <th>Cantidad</th>
+
+                        <th>Precio prom.</th>
+
+                        <th>Precio actual</th>
+
+                        <th>Valor</th>
+
+                        <th>Ganancia</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="portfolioTable">
+
+                    <tr>
+
+                        <td colspan="6">
+                            No tienes activos todavía
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+
+        <!-- OPERACIONES -->
+
+        <section class="operations">
+
+            <h2>Mis operaciones</h2>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Activo</th>
+
+                        <th>Tipo</th>
+
+                        <th>Ejecución</th>
+
+                        <th>Cantidad</th>
+
+                        <th>Precio</th>
+
+                        <th>Comisión</th>
+
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="operationsTable">
+
+                    <tr>
+
+                        <td colspan="7">
+                            No hay operaciones todavía
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/dashboard.js"></script>
+
+
+</body>
+
+</html>
